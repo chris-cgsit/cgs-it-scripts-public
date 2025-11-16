@@ -27,7 +27,7 @@
   - [7.3 Joins](#73-joins)
 - [8. ACID – Die vier Grundprinzipien](#8-acid--die-vier-grundprinzipien)
 - [9. JDBC – Grundlagen für Java-Schüler](#9-jdbc--grundlagen-für-java-schüler)
-- [10. Wichtige Links für Schüler](#10-wichtige-links-für-schüler)
+- [10. Wichtige Links](#10-wichtige-links)
   - [10.1 PostgreSQL](#101-postgresql)
   - [10.2 Oracle Database](#102-oracle-database)
   - [10.3 H2 Database](#103-h2-database)
@@ -308,7 +308,7 @@ try (Connection con = DriverManager.getConnection(url, user, pass);
 
 ---
 
-# 10. Wichtige Links für Schüler
+# 10. Wichtige Links
 
 ## 10.1 PostgreSQL
 
