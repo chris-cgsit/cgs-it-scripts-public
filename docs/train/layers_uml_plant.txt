@@ -1,0 +1,73 @@
+@startuml
+!theme plain
+skinparam componentStyle uml2
+skinparam linetype ortho
+skinparam shadowing false
+
+' --- CGS IT Farbdefinitionen ---
+skinparam rectangle {
+    BackgroundColor #F4F7FB
+    BorderColor #749DC6
+    FontColor #6F6F6F
+}
+skinparam component {
+    BackgroundColor #F4F7FB
+    BorderColor #749DC6
+    FontColor #6F6F6F
+}
+skinparam database {
+    BackgroundColor #F4F7FB
+    BorderColor #749DC6
+    FontColor #6F6F6F
+}
+skinparam interface {
+    BackgroundColor #FFFFFF
+    BorderColor #749DC6
+    FontColor #6F6F6F
+}
+skinparam arrowColor #6F6F6F
+skinparam defaultFontColor #6F6F6F
+
+
+' ----------------------------------------------------------
+' 1) CLIENT / JVM SPACE
+' ----------------------------------------------------------
+node "Java Application (Client Space / JVM)" as Client {
+
+    component "Application Logic" as AppLogic #F4F7FB
+    interface "JDBC API" as API #FFFFFF
+    component "JDBC Driver" as Driver #F4F7FB
+}
+
+' ----------------------------------------------------------
+' 2) DATABASE SERVER
+' ----------------------------------------------------------
+database "Database Server\n(PostgreSQL / Oracle / H2)" as DB #F4F7FB
+
+
+' ----------------------------------------------------------
+' 3) TCP CONNECTION (separate freistehende Komponente unten)
+' ----------------------------------------------------------
+component "TCP / Network Connection\nPort: 5432 / 1521 / ...\n(SQL over TCP)" as TCP #FFFFFF
+
+
+' ----------------------------------------------------------
+'      VERBINDUNGEN (klar & vertikal)
+' ----------------------------------------------------------
+
+' A) Business Logic nutzt JDBC API
+AppLogic -down-> API : \nuses (Connection, \nPreparedStatement, \n ResultSet)
+
+' B) JDBC Driver implementiert die JDBC API
+Driver .up.|> API : implements
+
+' C) JDBC Driver -> TCP Schicht
+Driver -down-> TCP : opens connection
+
+' D) TCP -> Datenbank
+TCP -down-> DB : transmits SQL\n& receives data
+
+' E) Rückfluss: DB -> TCP -> Driver
+DB -up-> TCP
+TCP -up-> Driver
+@enduml
