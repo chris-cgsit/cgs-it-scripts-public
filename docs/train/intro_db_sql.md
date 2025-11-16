@@ -1,8 +1,10 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/chris-cgsit/cgs-it-scripts-public/main/images/cgsit/logos/Logo-JPEG-small.png" width="140">
+</p>
+
 # CGS IT – Grundlagen zu Datenbanken, Relationalen Modellen & SQL
 
 ### *Kurzüberblick für die Java-JDBC Ausbildung*
-
-![CGS Logo](https://github.com/chris-cgsit/cgs-it-scripts-public/blob/main/images/cgsit/logos/Logo-JPEG-small.png)
 
 ---
 
@@ -78,6 +80,25 @@ Beispiele für relationale Datenbanksysteme:
 * **starkes Tool-Ökosystem** (CLI, Admin-Tools, Monitoring)
 
 RDBMS sind die Basis für Enterprise-Software, Web-Plattformen, Behörden-Systeme und nahezu alle professionellen Datenarchitekturen.
+
+# 4.1. Wie greift Java via JDBC auf die Datenbank zu
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/chris-cgsit/cgs-it-scripts-public/main/docs/train/dbd_laers.png" width="300"><br>
+  <em>Abbildung: JDBC Layer Architektur</em>
+</p>
+
+### Der Zugriff erfolgt in mehreren klar getrennten Schichten:
+
+- Application Logic erstellt über die JDBC-API eine Verbindung zur Datenbank (Connection).
+- Über ein PreparedStatement sendet Java SQL-Befehle an den JDBC-Treiber.
+- Der JDBC-Treiber übersetzt diese Befehle in das native Datenbankprotokoll (z. B. PostgreSQL oder Oracle Binary Protocol).
+- Über die TCP/IP-Verbindung werden die SQL-Kommandos an den Datenbankserver übertragen.
+- Die Datenbank führt das SQL aus, verarbeitet Transaktionen und liefert die Ergebnisse zurück.
+- Der JDBC-Treiber verpackt die Antwort in ein ResultSet, das in Java weiterverarbeitet werden kann.
+- Damit kapselt JDBC alle Details der Netzwerkkommunikation und ermöglicht einen einheitlichen, 
+standardisierten Datenbankzugriff, unabhängig vom jeweiligen Datenbanksystem.
+
 
 ---
 
@@ -311,4 +332,21 @@ try (Connection con = DriverManager.getConnection(url, user, pass);
 * TutorialsPoint SQL: [https://www.tutorialspoint.com/sql/index.htm](https://www.tutorialspoint.com/sql/index.htm)
 
 ---
+
+<a href="https://cgs.at" target="_blank">
+  <img src="https://raw.githubusercontent.com/chris-cgsit/cgs-it-scripts-public/main/images/cgsit/logos/Logo-JPEG-small.png" width="140">
+</a>
+
+> Besuch uns auf der offiziellen Website:  
+> [https://cgs.at](https://cgs.at)
+
+[CGS IT Solutions GmbH – https://cgs.at](https://cgs.at)
+
+---
+---
+
+
+
+
+
 
